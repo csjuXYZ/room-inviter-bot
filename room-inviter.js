@@ -19,7 +19,7 @@ const heartbeatConfig = {
   },
   intervalSeconds: 1 * 60, // Default: 1 hour - Send emoji for every 1 hour
 }
-wechaty.use(Heartbeat(heartbeatConfig))
+Wechaty.use(Heartbeat(heartbeatConfig))
 
 function onScan(qrcode, status) {
   if (status === ScanStatus.Waiting || status === ScanStatus.Timeout) {
