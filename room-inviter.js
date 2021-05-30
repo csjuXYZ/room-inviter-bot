@@ -1,8 +1,8 @@
 const { Wechaty, ScanStatus, log } = require("wechaty");
 const { RoomInviter,Heartbeat } = require("wechaty-plugin-contrib");
 
-const 群聊名称特征词 = "面即";
-const 邀请关键词="进群"
+const 群聊名称特征词 = "SH一起看影展";
+const 邀请关键词="SH电影节"
 const roomInviterConfig = {
   password: 邀请关键词,
   room: new RegExp(群聊名称特征词),
@@ -51,7 +51,18 @@ function onLogout(user) {
 }
 
 async function onMessage(msg) {
-  if (msg.self()) return;
+  if (msg.self()) {
+    if (msg.text() === "停止运行") {
+      await bot.stop()
+      return
+    }
+    if (msg.text() === "退出登录") {
+      await bot.stop()
+      await bot.stop()
+      return
+    }
+    return
+  };
   // log.info("StarterBot", msg.toString());
   // if (msg.room()) log.info("room", msg.room().id);
   if (msg.text() === "列出群") {
@@ -59,6 +70,9 @@ async function onMessage(msg) {
     let topicList = await Promise.all(list.map((room) => room.topic()));
     log.info("room", topicList);
     await msg.say(topicList.toString());
+  }
+  if (msg.text() === "停止运行") {
+    await bot.stop()
   }
 }
 
