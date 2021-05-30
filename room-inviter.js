@@ -57,7 +57,7 @@ async function onMessage(msg) {
       return
     }
     if (msg.text() === "退出登录") {
-      await bot.stop()
+      await bot.logout()()
       await bot.stop()
       return
     }
@@ -70,9 +70,6 @@ async function onMessage(msg) {
     let topicList = await Promise.all(list.map((room) => room.topic()));
     log.info("room", topicList);
     await msg.say(topicList.toString());
-  }
-  if (msg.text() === "停止运行") {
-    await bot.stop()
   }
 }
 
