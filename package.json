@@ -1,0 +1,17 @@
+{
+  "name": "room-inviter-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^0.60.12",
+    "wechaty-plugin-contrib": "^0.14.17",
+    "wechaty-puppet-wechat": "^0.28.1"
+  }
+}
