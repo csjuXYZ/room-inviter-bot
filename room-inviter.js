@@ -66,7 +66,7 @@ async function onMessage(msg) {
   // log.info("StarterBot", msg.toString());
   // if (msg.room()) log.info("room", msg.room().id);
   if (msg.text() === "列出群") {
-    let list = await bot.Room.findAll({ topic: /面即/ });
+    let list = await bot.Room.findAll({ topic: new RegExp(群聊名称特征词) });
     let topicList = await Promise.all(list.map((room) => room.topic()));
     log.info("room", topicList);
     await msg.say(topicList.toString());
