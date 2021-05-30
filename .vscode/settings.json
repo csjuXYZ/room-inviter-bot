@@ -50,7 +50,7 @@
   "files.exclude": {
     // "dist/": true,
     // "doc/": true,
-    "node_modules/": true,
+    // "node_modules/": true,
     // "package/": true,
     "room-inviter-bot.memory-card.json": true,
     

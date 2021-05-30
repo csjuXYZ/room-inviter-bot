@@ -1,5 +1,8 @@
 const { Wechaty, ScanStatus, log } = require("wechaty");
-const { RoomInviter,Heartbeat } = require("wechaty-plugin-contrib");
+const { RoomInviter, Heartbeat } = require("wechaty-plugin-contrib");
+const { PuppetPadlocal } = require("wechaty-puppet-padlocal");
+const token = "puppet_padlocal_fc94df45c2564fb48c11c4eb2f238a3c"            // padlocal token
+const puppet = new PuppetPadlocal({ token })
 
 const 群聊名称特征词 = "SH一起看影展";
 const 邀请关键词="SH电影节"
@@ -75,6 +78,7 @@ async function onMessage(msg) {
 
 const bot = new Wechaty({
   name: "room-inviter-bot",
+  puppet
 });
 
 bot.on("scan", onScan);
