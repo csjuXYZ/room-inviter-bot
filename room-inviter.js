@@ -1,16 +1,25 @@
 const { Wechaty, ScanStatus, log } = require("wechaty");
-const { RoomInviter } = require("wechaty-plugin-contrib");
+const { RoomInviter,Heartbeat } = require("wechaty-plugin-contrib");
 
 const 群聊名称特征词 = "面即";
 const 邀请关键词="进群"
-const config = {
+const roomInviterConfig = {
   password: 邀请关键词,
   room: new RegExp(群聊名称特征词),
   rule: "Please be a good people",//发出群聊邀请之前的规则申明
   welcome: "Welcome to join the room!",//进入群聊后的欢迎词
   repeat: "You have already in our room",//你已经加入了群聊
 };
-Wechaty.use(RoomInviter(config));
+Wechaty.use(RoomInviter(roomInviterConfig));
+
+const heartbeatConfig = {
+  contact: 'filehelper',    // default: filehelper - Contact id who will receive the emoji
+  emoji: {
+    heartbeat: '[爱心]',    // default: [爱心] - Heartbeat emoji
+  },
+  intervalSeconds: 1 * 60, // Default: 1 hour - Send emoji for every 1 hour
+}
+wechaty.use(Heartbeat(heartbeatConfig))
 
 function onScan(qrcode, status) {
   if (status === ScanStatus.Waiting || status === ScanStatus.Timeout) {
